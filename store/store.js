@@ -14,6 +14,18 @@ const useStore = create((set) => ({
       }
     });
   },
+  loadGenres: async () => {
+    await axios.get(`https://api.jikan.moe/v4/genres/anime`).then((res) => {
+      console.log(res);
+    });
+  },
+  loadTest: async () => {
+    await axios
+      .get("https://api.jikan.moe/v4/anime?genre=Action")
+      .then((res) => {
+        console.log(res);
+      });
+  },
 }));
 
 export default useStore;
