@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="header">
+    <header className="header w-full fixed top-0 bg-white z-50">
       {/* header-con */}
       <div className="max-w-screen-2xl m-auto flex justify-between items-center h-20">
         {/* logo */}
@@ -18,14 +18,14 @@ export default function Header() {
         {/* icons */}
         <div className="flex gap-2">
           <a
-            className="flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bgMain"
+            className="flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bg-main"
             href="https://github.com/maro911220"
             target="_blank"
           >
             <MdLightMode />
           </a>
           <a
-            className="flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bgMain"
+            className="flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bg-main"
             href="https://github.com/maro911220"
             target="_blank"
           >

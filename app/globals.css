@@ -22,8 +22,12 @@ body {
   background-color: var(--bgCol);
 }
 
-.bgMain {
+.bg-main {
   background-color: var(--mainCol);
+}
+
+.col-main {
+  color: var(--mainCol);
 }
 
 .blind {

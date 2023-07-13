@@ -12,9 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header />
-        <main className="max-w-screen-2xl m-auto flex">
+        <main className="pt-20 max-w-screen-2xl m-auto flex gap-4">
           <Navi />
-          <section className="flex-1">{children}</section>
+          <section className="flex-1 relative">{children}</section>
         </main>
       </body>
     </html>

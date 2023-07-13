@@ -3,6 +3,8 @@ import axios from "axios";
 
 const useStore = create((set) => ({
   list: [],
+  generList: [],
+  navList: [],
   items: "",
   loadList: async (e) => {
     await axios.get(`https://api.jikan.moe/v4/${e}`).then((res) => {
@@ -16,14 +18,17 @@ const useStore = create((set) => ({
   },
   loadGenres: async () => {
     await axios.get(`https://api.jikan.moe/v4/genres/anime`).then((res) => {
-      console.log(res);
+      set(() => ({ navList: res.data.data }));
     });
   },
-  loadTest: async () => {
+  loadGenresList: async (e) => {
     await axios
-      .get("https://api.jikan.moe/v4/anime?genre=Action")
+      .get(
+        `https://api.jikan.moe/v4/anime?genres=${e}&order_by=popularity&page=1`
+      )
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        set(() => ({ generList: res.data.data }));
       });
   },
 }));
