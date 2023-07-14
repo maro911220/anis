@@ -39,7 +39,7 @@ function Category({ item, title }) {
           return (
             <li className="px-4 " key={index}>
               <Link
-                href={`/list/${nav.name}?genres=${nav.mal_id}`}
+                href={`/list/${nav.name}?${title}=${nav.mal_id}&page=1`}
                 className={`${
                   searchParams == nav.mal_id && "col-main font-bold"
                 }`}

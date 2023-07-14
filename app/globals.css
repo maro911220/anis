@@ -17,6 +17,19 @@
   --txCol: #222;
 }
 
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--mainCol);
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--txCol);
+}
+
 body {
   color: var(--txCol);
   background-color: var(--bgCol);

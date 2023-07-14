@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function ListComponent({ list, title }) {
   return (
     <>
-      <p className="sticky py-2 top-20 border-b bg-white text-2xl font-bold uppercase  col-main">
+      <p className="py-2 border-b bg-white text-2xl font-bold uppercase col-main">
         {title}
       </p>
       <ul className="grid grid-cols-5 gap-4 my-8">
