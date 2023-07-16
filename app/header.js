@@ -1,13 +1,22 @@
+"use client";
+
 import { MdLightMode, MdNightlight } from "react-icons/md";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
 
+// style
+const iconStyle =
+  "flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bg-main transition hover:brightness-125";
+const headerStyle =
+  "header w-full fixed top-0 bg-white z-50 border-b dark:bg-neutral-800 dark:border-neutral-500";
+const headerInnerStyle =
+  "max-w-screen-2xl px-4  m-auto flex justify-between items-center h-20";
+
+// Header
 export default function Header() {
   return (
-    <header className="header w-full fixed top-0 bg-white z-50">
-      {/* header-con */}
-      <div className="max-w-screen-2xl m-auto flex justify-between items-center h-20">
-        {/* logo */}
+    <header className={headerStyle}>
+      <div className={headerInnerStyle}>
         <h1>
           <Link href="/" className="flex items-end">
             <img className="w-28" src="/logo.png" alt="로고" />
@@ -15,17 +24,20 @@ export default function Header() {
             <span className="text-xs leading-none">Anis</span>
           </Link>
         </h1>
-        {/* icons */}
         <div className="flex gap-2">
           <a
-            className="flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bg-main"
+            className={iconStyle}
             href="https://github.com/maro911220"
             target="_blank"
+            onClick={(e) => {
+              e.preventDefault();
+              document.documentElement.classList.toggle("dark");
+            }}
           >
             <MdLightMode />
           </a>
           <a
-            className="flex justify-center items-center w-10 h-10 text-white text-xl rounded-lg cursor-pointer bg-main"
+            className={iconStyle}
             href="https://github.com/maro911220"
             target="_blank"
           >

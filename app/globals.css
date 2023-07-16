@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap");
 @import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap";
 @font-face {
   font-family: yg-jalnan;
@@ -15,6 +16,11 @@
   --mainCol: #8894ff;
   --bgCol: #fff;
   --txCol: #222;
+}
+
+:root.dark {
+  --bgCol: #222;
+  --txCol: #fff;
 }
 
 *::-webkit-scrollbar {
@@ -33,14 +39,23 @@
 body {
   color: var(--txCol);
   background-color: var(--bgCol);
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+}
+
+.fs-yg {
+  font-family: yg-jalnan;
 }
 
 .bg-main {
-  background-color: var(--mainCol);
+  background-color: var(--mainCol) !important;
+}
+
+.border-main {
+  border-color: var(--mainCol) !important;
 }
 
 .col-main {
-  color: var(--mainCol);
+  color: var(--mainCol) !important;
 }
 
 .blind {
@@ -53,4 +68,18 @@ body {
 
 .header {
   font-family: yg-jalnan;
+}
+.loading {
+  height: calc(100vh - 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading svg {
+  width: 100px;
+}
+
+.loading svg path {
+  fill: var(--mainCol);
 }

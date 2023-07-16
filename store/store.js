@@ -2,38 +2,44 @@ import { create } from "zustand";
 import axios from "axios";
 
 const useStore = create((set) => ({
-  list: [],
-  generList: [],
-  pagination: [],
-  navList: [],
   items: "",
-  loadList: async (e) => {
-    await axios.get(`https://api.jikan.moe/v4/${e}`).then((res) => {
-      console.log(res.data.data.title);
-      if (Array.isArray(res.data.data)) {
-        set(() => ({ list: [...res.data.data] }));
-      } else {
-        set(() => ({ items: res.data.data }));
-      }
-    });
-  },
+  list: [],
+  charaList: [],
+  navList: [],
+  pagination: [],
+  // genres load
   loadGenres: async () => {
     await axios.get(`https://api.jikan.moe/v4/genres/anime`).then((res) => {
       set(() => ({ navList: res.data.data }));
     });
   },
-  loadGenresList: async (e, page) => {
-    await axios
-      .get(
-        `https://api.jikan.moe/v4/anime?genres=${e}&order_by=popularity&page=${page}`
-      )
-      .then((res) => {
-        console.log(res.data.pagination);
+  // list,detail load
+  loadList: async (e) => {
+    let url = e.id
+      ? `https://api.jikan.moe/v4/anime?genres=${e.id}&order_by=popularity&page=${e.page}`
+      : `https://api.jikan.moe/v4/${e}`;
+
+    await axios.get(url).then((res) => {
+      if (Array.isArray(res.data.data)) {
         set(() => ({
-          generList: res.data.data,
+          list: [...res.data.data],
           pagination: res.data.pagination,
         }));
-      });
+      } else {
+        set(() => ({ items: res.data.data }));
+      }
+    });
+  },
+  // loadChar
+  loadChar: async (e) => {
+    await axios.get(`https://api.jikan.moe/v4/${e}`).then((res) => {
+      console.log(res);
+      set(() => ({ charaList: [...res.data.data] }));
+    });
+  },
+  // reset
+  listReset: () => {
+    set(() => ({ list: [], items: [], charaList: [] }));
   },
 }));
 

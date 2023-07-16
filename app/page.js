@@ -7,6 +7,9 @@ export default function Home() {
   const item = useStore((state) => state);
   useEffect(() => {
     item.loadList("seasons/now");
+    return () => {
+      item.listReset();
+    };
   }, []);
   return (
     <div>
