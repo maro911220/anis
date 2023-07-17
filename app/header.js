@@ -3,6 +3,7 @@
 import { MdLightMode, MdNightlight } from "react-icons/md";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 // style
 const iconStyle =
@@ -14,6 +15,11 @@ const headerInnerStyle =
 
 // Header
 export default function Header() {
+  const [mode, setMode] = useState(true);
+  useEffect(() => {
+    let modes = localStorage.getItem("maroMode");
+    document.documentElement.classList = modes;
+  }, [mode]);
   return (
     <header className={headerStyle}>
       <div className={headerInnerStyle}>
@@ -31,7 +37,9 @@ export default function Header() {
             target="_blank"
             onClick={(e) => {
               e.preventDefault();
-              document.documentElement.classList.toggle("dark");
+              setMode(!mode);
+              let modeType = mode == true ? " " : "dark";
+              localStorage.setItem("maroMode", modeType);
             }}
           >
             <MdLightMode />
