@@ -18,7 +18,7 @@ export default function Header() {
   const [mode, setMode] = useState(true);
   useEffect(() => {
     let modes = localStorage.getItem("maroMode");
-    if (modes == null) modes = "";
+    if (modes == null) modes;
     document.documentElement.classList = modes;
   }, [mode]);
   return (
