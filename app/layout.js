@@ -17,15 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={bodyStyle}>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              const theme = localStorage.getItem("maroMode");
-              document.documentElement.classList = theme;
-            `,
-          }}
-        ></script>
-        <Header />
+        <Header suppressHydrationWarning={true} />
         <main className={mainStyle}>
           <section className={sectionStyle}>{children}</section>
         </main>
