@@ -15,9 +15,9 @@ const sectionStyle = "flex-1 relative px-4";
 // RootLayout
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className=" ">
       <body className={bodyStyle}>
-        <Header suppressHydrationWarning={true} />
+        <Header />
         <main className={mainStyle}>
           <section className={sectionStyle}>{children}</section>
         </main>

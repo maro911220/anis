@@ -1,9 +1,7 @@
 "use client";
-
 import { MdLightMode, MdNightlight } from "react-icons/md";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useState } from "react";
 
 // style
 const iconStyle =
@@ -12,11 +10,11 @@ const headerStyle =
   "header w-full fixed top-0 bg-white z-50 border-b dark:bg-neutral-800 dark:border-neutral-500";
 const headerInnerStyle =
   "max-w-screen-2xl px-4  m-auto flex justify-between items-center h-20";
+const sytleCheck =
+  'document.documentElement.classList = localStorage.getItem("maroMode");';
 
 // Header
 export default function Header() {
-  const sytleCheck =
-    'document.documentElement.classList = localStorage.getItem("maroMode");';
   return (
     <>
       <header className={headerStyle}>
