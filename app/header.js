@@ -1,7 +1,8 @@
 "use client";
-import { MdLightMode, MdNightlight } from "react-icons/md";
+import { MdLightMode, MdNightlightRound } from "react-icons/md";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
+import { useState } from "react";
 
 // style
 const iconStyle =
@@ -15,13 +16,21 @@ const sytleCheck =
 
 // Header
 export default function Header() {
+  const [mode, setMode] = useState("");
+  const modeCheck = () => {
+    let type = localStorage.getItem("maroMode") == "dark" ? " " : "dark";
+    setMode(type);
+    localStorage.setItem("maroMode", type);
+    document.documentElement.classList = type;
+  };
+
   return (
     <>
       <header className={headerStyle}>
         <div className={headerInnerStyle}>
           <h1>
             <Link href="/" className="flex items-end">
-              <img className="w-28" src="/logo.png" alt="로고" />
+              <img className="w-28 h-12" src="/logo.png" alt="로고" />
               <span className="blind">Maro</span>
               <span className="text-xs leading-none">Anis</span>
             </Link>
@@ -33,13 +42,10 @@ export default function Header() {
               target="_blank"
               onClick={(e) => {
                 e.preventDefault();
-                let type =
-                  localStorage.getItem("maroMode") == "dark" ? " " : "dark";
-                localStorage.setItem("maroMode", type);
-                document.documentElement.classList = type;
+                modeCheck();
               }}
             >
-              <MdLightMode />
+              {mode == "dark" ? <MdLightMode /> : <MdNightlightRound />}
             </a>
             <a
               className={iconStyle}

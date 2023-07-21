@@ -2,9 +2,8 @@ import { create } from "zustand";
 import axios from "axios";
 
 const useStore = create((set) => ({
-  items: "",
   list: [],
-  charaList: [],
+  items: [],
   navList: [],
   pagination: [],
   // genres load
@@ -13,29 +12,41 @@ const useStore = create((set) => ({
       set(() => ({ navList: res.data.data }));
     });
   },
-  // list,detail load
+  // list load
   loadList: async (e) => {
     let url = e.id
       ? `https://api.jikan.moe/v4/anime?genres=${e.id}&order_by=popularity&page=${e.page}`
       : `https://api.jikan.moe/v4/${e}`;
 
-    await axios.get(url).then((res) => {
-      if (Array.isArray(res.data.data)) {
+    await axios
+      .get(url)
+      .then((res) => {
         set(() => ({
           list: [...res.data.data],
           pagination: res.data.pagination,
         }));
-      } else {
-        set(() => ({ items: res.data.data }));
-      }
-    });
+      })
+      .catch((err) => {
+        location.reload();
+      });
   },
-  // loadChar
-  loadChar: async (e) => {
-    await axios.get(`https://api.jikan.moe/v4/${e}`).then((res) => {
-      console.log(res);
-      set(() => ({ charaList: [...res.data.data] }));
-    });
+  loadDetail: async (e) => {
+    await axios
+      .all([
+        axios.get(`https://api.jikan.moe/v4/anime/${e}/full`),
+        axios.get(`https://api.jikan.moe/v4/anime/${e}/characters`),
+        axios.get(`https://api.jikan.moe/v4/anime/${e}/news`),
+      ])
+      .then(
+        axios.spread((res1, res2, res3) => {
+          set(() => ({
+            items: [res1.data.data, res2.data.data, res3.data.data],
+          }));
+        })
+      )
+      .catch((err) => {
+        location.reload();
+      });
   },
   // reset
   listReset: () => {

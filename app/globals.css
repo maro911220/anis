@@ -35,8 +35,13 @@
 *::-webkit-scrollbar-track {
   background-color: var(--txCol);
 }
-
+html,
 body {
+  position: relative;
+  height: 100%;
+}
+body {
+  width: 100%;
   color: var(--txCol);
   background-color: var(--bgCol);
   font-family: "Roboto", "Noto Sans KR", sans-serif;
@@ -82,4 +87,38 @@ body {
 
 .loading svg path {
   fill: var(--mainCol);
+}
+.swiper {
+  padding: 0 28px !important;
+}
+/* .swiper-wrapper {
+  padding: 0 24px;
+} */
+
+.swiper-slide {
+  width: 100px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  top: 0 !important;
+  border-radius: 4px;
+  width: 24px !important;
+  height: 100% !important;
+  margin-top: 0 !important;
+  background-color: var(--mainCol);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #fff !important;
+  font-size: 16px !important;
+}
+
+.swiper-button-prev {
+  left: 0 !important;
+}
+
+.swiper-button-next {
+  right: 0 !important;
 }
