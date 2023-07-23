@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { motion } from "framer-motion";
-import Navi from "./navi";
 import Loadings from "./loadings";
+import { motion } from "framer-motion";
 
 // style
 const BoxStyle = "flex justify-between flex-col md:flex-row pb-4 md:py-4";
 const titleStyle =
-  "text-xl md:text-2xl font-bold uppercase col-main fs-yg text-center md:text-left mb-2 md:mb-0";
+  "text-xl md:text-2xl font-bold uppercase col-main fs-yg text-center md:text-left mt-2 md:mt-0 order-2 md:order-none";
 const ulStyle =
   "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  xl:grid-cols-6 gap-2 md:gap-4 mb-8 text-sm md:text-md";
 const liStyle =
@@ -21,7 +20,7 @@ export default function ListComponent({ list, title }) {
     <>
       <div className={BoxStyle}>
         <p className={titleStyle}>{title}</p>
-        <Navi />
+        {/* <Navi /> */}
       </div>
 
       {!list[0] ? (

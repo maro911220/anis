@@ -16,7 +16,7 @@ export default function List(props) {
     <>
       <ListComponent
         list={item.list}
-        title={props.params.id.replace(/[%2 B]/g, " ")}
+        title={props.params.id.replace(/%2B/g, " ")}
       />
       {item.list[0] && item.pagination && <Pagination page={item.pagination} />}
     </>

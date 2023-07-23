@@ -1,8 +1,9 @@
 "use client";
-import { MdLightMode, MdNightlightRound } from "react-icons/md";
-import { AiFillGithub, AiOutlineSearch } from "react-icons/ai";
+import Navi from "./navi";
 import Link from "next/link";
 import { useState } from "react";
+import { AiFillGithub, AiOutlineSearch } from "react-icons/ai";
+import { MdLightMode, MdNightlightRound } from "react-icons/md";
 
 // style
 const logoStyle = "w-20 h-8 md:w-28 md:h-12";
@@ -17,7 +18,7 @@ const sytleCheck =
 const searchBox =
   "flex items-center absolute md:static top-16 right-0 w-full md:w-auto";
 const searchInput =
-  "flex-1 h-10 border  border-r-0 border-l-0 p-2 md:border-l md:rounded-l bg-white dark:bg-neutral-800  dark:border-neutral-500 focus:outline-none";
+  "flex-1 w-full h-10 border  border-r-0 border-l-0 p-2 md:border-l md:rounded-l bg-white dark:bg-neutral-800  dark:border-neutral-500 focus:outline-none";
 
 // Header
 export default function Header() {
@@ -41,8 +42,9 @@ export default function Header() {
               <span className="text-xs leading-none">Anis</span>
             </Link>
           </h1>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             <div className={searchBox}>
+              <Navi />
               <input
                 className={searchInput}
                 type="text"
