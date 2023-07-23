@@ -19,13 +19,19 @@ const disabledStyle =
 //Pagination
 export default function Pagination({ page }) {
   function range(size, start) {
-    let starts = Math.ceil(start / 10 - 1) * 10;
+    let starts;
+    let values = start % 10;
+    if (values <= 5 && values != 0) {
+      starts = start - values;
+    } else {
+      starts = values == 0 ? start - 5 : start - (values - 5);
+    }
     return [...Array(size).keys()].map((key) =>
       key + 1 + starts <= page.last_visible_page ? key + 1 + starts : null
     );
   }
   let [loc, setLoc] = useState("");
-  let pageList = range(10, page.current_page);
+  let pageList = range(5, page.current_page);
   useEffect(() => {
     setLoc(window.location.href.split("list")[1].split("page")[0]);
   }, []);
@@ -76,14 +82,11 @@ function MoveButton({ type, page, loc }) {
       break;
     case "prev":
       classed = page.current_page != 1;
-      pageNum = page.current_page < 10 ? 1 : page.current_page - 10;
+      pageNum = page.current_page - 1;
       break;
     case "next":
       classed = page.current_page != page.last_visible_page;
-      pageNum =
-        page.current_page + 10 >= page.last_visible_page
-          ? page.last_visible_page
-          : page.current_page + 10;
+      pageNum = page.current_page + 1;
       break;
     case "nextDouble":
       classed = page.current_page != page.last_visible_page;

@@ -14,9 +14,14 @@ const useStore = create((set) => ({
   },
   // list load
   loadList: async (e) => {
-    let url = e.id
-      ? `https://api.jikan.moe/v4/anime?genres=${e.id}&order_by=popularity&page=${e.page}`
-      : `https://api.jikan.moe/v4/${e}`;
+    let url;
+    if (e.id) {
+      if (isNaN(e.id)) {
+        url = `https://api.jikan.moe/v4/anime?q=${e.id}`;
+      } else {
+        url = `https://api.jikan.moe/v4/anime?genres=${e.id}&order_by=popularity&page=${e.page}&limit=24`;
+      }
+    } else url = `https://api.jikan.moe/v4/${e}?limit=24`;
 
     await axios
       .get(url)

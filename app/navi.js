@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 
 // style
 const navStyle =
-  "flex w-44 items-center justify-between px-4 relative bg-main text-white rounded cursor-pointer";
+  "flex w-44 h-8 ml-auto items-center justify-between px-4 relative bg-main text-white rounded cursor-pointer";
 const navListStyle =
   "absolute z-10 top-10 right-0 w-full h-40 overflow-auto bg-main rounded";
 const navListItemStyle = "px-4 py-1 text-sm  hover:bg-neutral-800";
@@ -59,7 +59,6 @@ function Category({ item, title }) {
             className={navListItemStyle}
             onClick={() => {
               let name = nav.name.replace(/[ ]/g, "+");
-              console.log(name);
               router.push(
                 `/list/${name}?type=${title}&id=${nav.mal_id}&page=1`
               );

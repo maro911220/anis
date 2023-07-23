@@ -9,8 +9,9 @@ export const metadata = {
 
 // style
 const bodyStyle = "overflow-y-scroll bg-white dark:bg-neutral-800";
-const mainStyle = "pt-20 max-w-screen-2xl m-auto flex gap-4 overflow-hidden";
-const sectionStyle = "w-full flex-1 relative px-4";
+const mainStyle =
+  "pt-28 md:pt-20 max-w-screen-2xl m-auto flex gap-4 overflow-hidden";
+const sectionStyle = "w-full flex-1 relative px-2 md:px-4";
 
 // RootLayout
 export default function RootLayout({ children }) {

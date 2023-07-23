@@ -4,6 +4,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap");
 @import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap";
+
 @font-face {
   font-family: yg-jalnan;
   src: url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff)
@@ -35,11 +36,13 @@
 *::-webkit-scrollbar-track {
   background-color: var(--txCol);
 }
+
 html,
 body {
   position: relative;
   height: 100%;
 }
+
 body {
   width: 100%;
   color: var(--txCol);
@@ -74,6 +77,7 @@ body {
 .header {
   font-family: yg-jalnan;
 }
+
 .loading {
   height: calc(100vh - 300px);
   display: flex;
@@ -88,12 +92,6 @@ body {
 .loading svg path {
   fill: var(--mainCol);
 }
-.swiper {
-  padding: 0 28px !important;
-}
-/* .swiper-wrapper {
-  padding: 0 24px;
-} */
 
 .swiper-slide {
   width: 100px !important;
@@ -101,24 +99,17 @@ body {
 
 .swiper-button-next,
 .swiper-button-prev {
-  top: 0 !important;
   border-radius: 4px;
-  width: 24px !important;
-  height: 100% !important;
+  width: 32px !important;
+  height: 32px !important;
   margin-top: 0 !important;
-  background-color: var(--mainCol);
+  transform: translateY(-50%);
+  background-color: var(--txCol);
+  box-shadow: 0 0 10px var(--bgCol);
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: #fff !important;
+  color: var(--bgCol) !important;
   font-size: 16px !important;
-}
-
-.swiper-button-prev {
-  left: 0 !important;
-}
-
-.swiper-button-next {
-  right: 0 !important;
 }
