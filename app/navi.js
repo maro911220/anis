@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 
 // style
 const navStyle =
-  "flex flex-none mr-0 md:mr-2 w-32 md:w-44 h-10 ml-auto text-xs md:text-sm font-normal items-center justify-between px-2 relative bg-main text-white md:rounded cursor-pointer";
+  "flex flex-none ml-0 md:ml-2 border-l md:border-0 dark:border-neutral-500 w-32 md:w-44 h-10 ml-auto text-xs md:text-sm font-normal items-center justify-between px-2 relative bg-main text-white md:rounded cursor-pointer";
 const navListStyle =
   "absolute z-10 top-12 right-0 w-full h-40 overflow-auto bg-main rounded";
 const navListItemStyle = "px-2 py-1 hover:bg-neutral-800";
