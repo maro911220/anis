@@ -33,13 +33,8 @@ export default function Header() {
     document.documentElement.classList = type;
   };
 
-  const notWarn = () => {
-    toast.warning("Please search in English");
-    toast.clearWaitingQueue();
-  };
-
-  const notWarn2 = () => {
-    toast.warning("Please enter at least two letters");
+  const notWarn = (message) => {
+    toast.warning(message);
     toast.clearWaitingQueue();
   };
 
@@ -60,7 +55,7 @@ export default function Header() {
               className={searchBox}
               onSubmit={(e) => {
                 if (search.length < 2) {
-                  notWarn2();
+                  notWarn("Please enter at least two letters");
                   e.preventDefault();
                 }
               }}
@@ -74,7 +69,7 @@ export default function Header() {
                 onChange={(e) => {
                   const regExp = /[^0-9a-zA-Z,\s]/g;
                   if (regExp.test(e.target.value)) {
-                    notWarn();
+                    notWarn("Please search in English");
                     setSearch("");
                   } else {
                     setSearch(e.target.value);

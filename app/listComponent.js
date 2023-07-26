@@ -16,10 +16,14 @@ const liSubStyle = "truncate dark:text-slate-100 flex-none";
 
 // ListComponent
 export default function ListComponent({ list, title }) {
+  const dataCheck = (e) => {
+    return e !== "" ? e : "not data";
+  };
   return (
     <>
+      <h2 className="hidden">List</h2>
       <div className={BoxStyle}>
-        <p className={titleStyle}>{title}</p>
+        <p className={titleStyle}>{dataCheck(title)}</p>
         {/* <Navi /> */}
       </div>
 
@@ -44,11 +48,11 @@ export default function ListComponent({ list, title }) {
                 >
                   <img
                     className={liImgStyle}
-                    src={item.images.jpg.image_url}
-                    alt={item.title}
+                    src={dataCheck(item.images.jpg.image_url)}
+                    alt={dataCheck(item.title)}
                   />
-                  <p className={liTitleStyle}>{item.title}</p>
-                  <p className={liSubStyle}>{item.title_japanese}</p>
+                  <h3 className={liTitleStyle}>{dataCheck(item.title)}</h3>
+                  <p className={liSubStyle}>{dataCheck(item.title_japanese)}</p>
                 </Link>
               </motion.li>
             );

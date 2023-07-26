@@ -14,6 +14,9 @@ const textStyle = "text-neutral-600 dark:text-neutral-400";
 
 export default function Detail(props) {
   const item = useStore((state) => state);
+  const dataCheck = (e) => {
+    return e !== "" ? e : "not data";
+  };
   useEffect(() => {
     item.loadDetail(props.params.id);
     return () => {
@@ -32,34 +35,37 @@ export default function Detail(props) {
           <div className="flex gap-4 pb-4 mb-4 border-b items-center sm:items-stretch flex-col sm:flex-row dark:border-neutral-500">
             <img
               className="flex-none rounded w-60 h-auto"
-              src={item.items[0].images.jpg.image_url}
+              src={dataCheck(item.items[0].images.jpg.image_url)}
             />
             <div className="w-full flex flex-col justify-between mt-8 sm:mt-0 overflow-hidden">
               <div>
-                <p className="text-3xl font-bold col-main">
-                  {item.items[0].title_japanese}
+                <h2 className="text-3xl font-bold col-main">
+                  {dataCheck(item.items[0].title_japanese)}
+                </h2>
+                <p className="text-xl font-bold">
+                  {dataCheck(item.items[0].title)}
                 </p>
-                <p className="text-xl font-bold">{item.items[0].title}</p>
                 <div className={textStyle + ` flex gap-4`}>
                   <p>
-                    <b>Type : </b> {item.items[0].type}
+                    <b>Type : </b> {dataCheck(item.items[0].type)}
                   </p>
                   <p>
                     <b>Year : </b>
-                    {item.items[0].year}
+                    {dataCheck(item.items[0].year)}
                   </p>
                   <p>
                     <b>Episodes : </b>
-                    {item.items[0].episodes}
+                    {dataCheck(item.items[0].episodes)}
                   </p>
                 </div>
               </div>
 
               {/* chara */}
               <div>
+                <h3 className="text-xl font-bold mt-8 mb-2">Character</h3>
                 <Swiper
                   modules={[Navigation]}
-                  className="w-full mt-8"
+                  className="w-full "
                   slidesPerView={"auto"}
                   spaceBetween={4}
                   navigation
@@ -85,27 +91,31 @@ export default function Detail(props) {
             </div>
           </div>
           <div className="border-b pb-4 mb-4 dark:border-neutral-500">
-            <p className="text-xl font-bold mb-2">Synopsis</p>
-            <p className={textStyle}>{item.items[0].synopsis}</p>
+            <h3 className="text-xl font-bold mb-2">Synopsis</h3>
+            <p className={textStyle}>{dataCheck(item.items[0].synopsis)}</p>
           </div>
           <div>
-            <p className="text-xl font-bold mb-2">news</p>
-            {item.items[2].map((news, index) => {
-              return (
-                <div key={index}>
-                  <a
-                    className={
-                      textStyle + ` inline-flex leading-5 hover:underline`
-                    }
-                    href={news.url}
-                    target="_blank"
-                  >
-                    <AiOutlineLink className="flex-none text-md" />
-                    {news.title}
-                  </a>
-                </div>
-              );
-            })}
+            <h3 className="text-xl font-bold mb-2">News</h3>
+            {item.items[2].length != 0 ? (
+              item.items[2].map((news, index) => {
+                return (
+                  <div key={index}>
+                    <a
+                      className={
+                        textStyle + ` inline-flex leading-5 hover:underline`
+                      }
+                      href={news.url}
+                      target="_blank"
+                    >
+                      <AiOutlineLink className="flex-none text-md" />
+                      {news.title}
+                    </a>
+                  </div>
+                );
+              })
+            ) : (
+              <div> not be found.</div>
+            )}
           </div>
         </motion.div>
       ) : (
