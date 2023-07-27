@@ -46,7 +46,7 @@ export default function Header() {
             <Link href="/" className="flex items-end">
               <img className={logoStyle} src="/logo.png" alt="로고" />
               <span className="blind">Maro</span>
-              <span className="text-xs leading-none">Anis</span>
+              <span className="text-xs leading-[0.8] ">Anis</span>
             </Link>
           </h1>
           <div className="flex items-center gap-1 md:gap-2">
