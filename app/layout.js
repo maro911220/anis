@@ -3,13 +3,13 @@ import Header from "./header";
 
 // metadata
 export const metadata = {
-  title: "maro Anis",
+  title: "Maro Anis",
   description: "ani api(jikan) study",
   keywords: ["ani"],
   metadataBase: new URL("https://maroanis.netlify.app"),
   openGraph: {
-    title: "maro Anis",
-    siteName: "maro Anis",
+    title: "Maro Anis",
+    siteName: "Maro Anis",
     url: "https://maroanis.netlify.app",
     description: "ani api(jikan) study",
     images: "/tumb.jpg",

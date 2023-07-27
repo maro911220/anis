@@ -8,7 +8,7 @@ import { MdLightMode, MdNightlightRound } from "react-icons/md";
 import "react-toastify/dist/ReactToastify.css";
 
 // style
-const logoStyle = "w-20 h-8 md:w-28 md:h-12";
+const logoStyle = "w-auto h-10 md:h-12";
 const iconStyle =
   "flex justify-center items-center w-10 h-10 text-white text-xl rounded cursor-pointer bg-main transition hover:brightness-125";
 const headerStyle =
