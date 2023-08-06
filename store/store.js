@@ -1,6 +1,13 @@
 import { create } from "zustand";
 import axios from "axios";
 
+const baseUrl = "https://api.jikan.moe/v4";
+const error = () => {
+  setTimeout(() => {
+    location.reload();
+  }, 1500);
+};
+
 const useStore = create((set) => ({
   list: [],
   items: [],
@@ -9,20 +16,18 @@ const useStore = create((set) => ({
   pagination: [],
   // genres load
   loadGenres: async () => {
-    await axios.get(`https://api.jikan.moe/v4/genres/anime`).then((res) => {
+    await axios.get(`${baseUrl}/genres/anime`).then((res) => {
       set(() => ({ navList: res.data.data }));
     });
   },
   loadSchedules: async (day) => {
     await axios
-      .get(`https://api.jikan.moe/v4/schedules?filter=${day}`)
+      .get(`${baseUrl}/schedules?filter=${day}`)
       .then((res) => {
         set(() => ({ schedules: res.data.data }));
       })
       .catch((err) => {
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
+        error();
       });
   },
   // list load
@@ -30,11 +35,11 @@ const useStore = create((set) => ({
     let url;
     if (e.id) {
       if (isNaN(e.id)) {
-        url = `https://api.jikan.moe/v4/anime?q=${e.id}`;
+        url = `${baseUrl}/anime?q=${e.id}`;
       } else {
-        url = `https://api.jikan.moe/v4/anime?genres=${e.id}&order_by=popularity&page=${e.page}&limit=24`;
+        url = `${baseUrl}/anime?genres=${e.id}&order_by=popularity&page=${e.page}&limit=24`;
       }
-    } else url = `https://api.jikan.moe/v4/${e}?limit=24`;
+    } else url = `${baseUrl}/${e}?limit=24`;
 
     await axios
       .get(url)
@@ -45,18 +50,16 @@ const useStore = create((set) => ({
         }));
       })
       .catch((err) => {
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
+        error();
       });
   },
   // detail load
   loadDetail: async (e) => {
     await axios
       .all([
-        axios.get(`https://api.jikan.moe/v4/anime/${e}/full`),
-        axios.get(`https://api.jikan.moe/v4/anime/${e}/characters`),
-        axios.get(`https://api.jikan.moe/v4/anime/${e}/news`),
+        axios.get(`${baseUrl}/anime/${e}/full`),
+        axios.get(`${baseUrl}/anime/${e}/characters`),
+        axios.get(`${baseUrl}/anime/${e}/news`),
       ])
       .then(
         axios.spread((res1, res2, res3) => {
@@ -66,9 +69,7 @@ const useStore = create((set) => ({
         })
       )
       .catch((err) => {
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
+        error();
       });
   },
   // reset
