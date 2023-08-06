@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 // style
 const logoStyle = "w-auto h-10 md:h-12";
 const iconStyle =
-  "flex justify-center items-center w-10 h-10 text-white text-xl rounded cursor-pointer bg-main transition hover:brightness-125";
+  "flex justify-center items-center w-10 h-10 text-white text-xl rounded cursor-pointer bg-main transition hover:brightness-125 dark:border dark:border-neutral-800";
 const headerStyle =
   "header w-full fixed top-0 bg-white z-50 border-b dark:bg-neutral-800 dark:border-neutral-500";
 const headerInnerStyle =
@@ -20,7 +20,7 @@ const sytleCheck =
 const searchBox =
   "flex items-center absolute md:static top-16 right-0 w-full md:w-auto ";
 const searchInput =
-  "flex-1 w-full h-10 border  border-r-0 border-l-0 p-2 md:border-l md:rounded-l bg-white dark:bg-neutral-800  dark:border-neutral-500 focus:outline-none";
+  "flex-1 w-full h-10 border border-r-0 border-l-0 p-2 text-sm md:text-base md:border-l md:rounded-l bg-white dark:bg-neutral-600  dark:border-neutral-800 focus:outline-none";
 
 // Header
 export default function Header() {
@@ -31,6 +31,10 @@ export default function Header() {
     setMode(type);
     localStorage.setItem("maroMode", type);
     document.documentElement.classList = type;
+    document.body.classList.add("load");
+    setTimeout(() => {
+      document.body.classList.remove("load");
+    }, 100);
   };
 
   const notWarn = (message) => {
@@ -60,6 +64,7 @@ export default function Header() {
                 }
               }}
             >
+              <Navi />
               <input
                 className={searchInput}
                 type="text"
@@ -90,8 +95,8 @@ export default function Header() {
                 newestOnTop={false}
                 rtl={false}
               />
-              <Navi />
             </form>
+
             <a
               className={iconStyle}
               href="https://github.com/maro911220"

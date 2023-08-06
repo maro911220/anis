@@ -4,6 +4,7 @@ import useStore from "@/store/store";
 import ListComponent from "@/app/listComponent";
 import Pagination from "@/app/list/pagination";
 
+/* List */
 export default function List(props) {
   const item = useStore((state) => state);
   useEffect(() => {

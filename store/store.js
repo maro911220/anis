@@ -5,12 +5,23 @@ const useStore = create((set) => ({
   list: [],
   items: [],
   navList: [],
+  schedules: [],
   pagination: [],
   // genres load
   loadGenres: async () => {
     await axios.get(`https://api.jikan.moe/v4/genres/anime`).then((res) => {
       set(() => ({ navList: res.data.data }));
     });
+  },
+  loadSchedules: async (day) => {
+    await axios
+      .get(`https://api.jikan.moe/v4/schedules?filter=${day}`)
+      .then((res) => {
+        set(() => ({ schedules: res.data.data }));
+      })
+      .catch((err) => {
+        location.href = "/error";
+      });
   },
   // list load
   loadList: async (e) => {
@@ -32,9 +43,10 @@ const useStore = create((set) => ({
         }));
       })
       .catch((err) => {
-        location.reload();
+        location.href = "/error";
       });
   },
+  // detail load
   loadDetail: async (e) => {
     await axios
       .all([
@@ -50,12 +62,12 @@ const useStore = create((set) => ({
         })
       )
       .catch((err) => {
-        location.reload();
+        location.href = "/error";
       });
   },
   // reset
   listReset: () => {
-    set(() => ({ list: [], items: [], charaList: [] }));
+    set(() => ({ list: [], items: [], charaList: [], schedules: [] }));
   },
 }));
 

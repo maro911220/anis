@@ -9,7 +9,7 @@ const titleStyle =
 const ulStyle =
   "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  xl:grid-cols-6 gap-2 md:gap-4 mb-8 text-sm md:text-md";
 const liStyle =
-  "p-2 rounded bg-neutral-100 border border-neutral-300 dark:border-neutral-700 dark:bg-neutral-600";
+  "p-2 rounded bg-neutral-100 border border-neutral-200 dark:border-neutral-700 dark:bg-neutral-600";
 const liImgStyle = "w-full flex-1 mb-2 object-cover rounded";
 const liTitleStyle = "font-bold truncate col-main flex-none";
 const liSubStyle = "truncate dark:text-slate-100 flex-none";
@@ -24,7 +24,6 @@ export default function ListComponent({ list, title }) {
       <h2 className="hidden">List</h2>
       <div className={BoxStyle}>
         <p className={titleStyle}>{dataCheck(title)}</p>
-        {/* <Navi /> */}
       </div>
 
       {!list[0] ? (

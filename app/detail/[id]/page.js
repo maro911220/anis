@@ -9,9 +9,22 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-// style
-const textStyle = "text-neutral-600 dark:text-neutral-400";
+/* style */
+const textStyle = "text-sm lg:text-base text-neutral-600 dark:text-neutral-400";
+const boxStyle =
+  "p-2 my-2 rounded bg-neutral-100 border border-neutral-200 md:p-4 md:my-4 dark:border-neutral-700 dark:bg-neutral-600";
+const titleBox =
+  "flex gap-4 items-center sm:items-stretch flex-col  sm:flex-row";
+const posterStyle = "flex-none rounded w-60 h-auto";
+const detailBox = "w-full flex flex-col justify-between overflow-hidden";
+const titleStyle = "text-base lg:text-xl font-bold mb-2";
+const jpTitleStyle = "text-xl font-bold col-main md:text-2xl lg:text-3xl";
+const slideStyle =
+  "border rounded bg-white overflow-hidden dark:border-neutral-700 dark:bg-neutral-800";
+const slideTextStyle = "text-sm p-1 h-12 text-ellipsis overflow-hidden";
+const slideImgStyle = "w-full h-20 object-cover";
 
+/* Detail */
 export default function Detail(props) {
   const item = useStore((state) => state);
   const dataCheck = (e) => {
@@ -30,22 +43,21 @@ export default function Detail(props) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="w-full my-12"
+          className="w-full my-4 md:my-14"
         >
-          <div className="flex gap-4 pb-4 mb-4 border-b items-center sm:items-stretch flex-col sm:flex-row dark:border-neutral-500">
+          {/* titlebox */}
+          <div className={`${boxStyle} ${titleBox}`}>
             <img
-              className="flex-none rounded w-60 h-auto"
+              className={posterStyle}
               src={dataCheck(item.items[0].images.jpg.image_url)}
             />
-            <div className="w-full flex flex-col justify-between mt-8 sm:mt-0 overflow-hidden">
+            <div className={detailBox}>
               <div>
-                <h2 className="text-3xl font-bold col-main">
+                <h2 className={jpTitleStyle}>
                   {dataCheck(item.items[0].title_japanese)}
                 </h2>
-                <p className="text-xl font-bold">
-                  {dataCheck(item.items[0].title)}
-                </p>
-                <div className={textStyle + ` flex gap-4`}>
+                <p className={titleStyle}>{dataCheck(item.items[0].title)}</p>
+                <div className={textStyle + ` !text-sm flex flex-wrap gap-x-2`}>
                   <p>
                     <b>Type : </b> {dataCheck(item.items[0].type)}
                   </p>
@@ -57,12 +69,22 @@ export default function Detail(props) {
                     <b>Episodes : </b>
                     {dataCheck(item.items[0].episodes)}
                   </p>
+                  <p>
+                    <b>Score : </b>
+                    {dataCheck(item.items[0].score)}
+                  </p>
+                  <p>
+                    <b>Studio : </b>
+                    {item.items[0].studios.map((studio, index) => (
+                      <span key={index}>{dataCheck(studio.name)}</span>
+                    ))}
+                  </p>
                 </div>
               </div>
 
               {/* chara */}
               <div>
-                <h3 className="text-xl font-bold mt-8 mb-2">Character</h3>
+                <h3 className={`${titleStyle} mt-8 mb-2`}>Character</h3>
                 <Swiper
                   modules={[Navigation]}
                   className="w-full "
@@ -72,17 +94,12 @@ export default function Detail(props) {
                 >
                   {item.items[1].map((chara, index) => {
                     return (
-                      <SwiperSlide
-                        key={index}
-                        className="border rounded overflow-hidden dark:border-neutral-500"
-                      >
+                      <SwiperSlide key={index} className={slideStyle}>
                         <img
                           src={chara.character.images.jpg.image_url}
-                          className="w-full h-24 object-cover	"
+                          className={slideImgStyle}
                         />
-                        <p className="text-sm p-1 h-12 text-ellipsis overflow-hidden">
-                          {chara.character.name}
-                        </p>
+                        <p className={slideTextStyle}>{chara.character.name}</p>
                       </SwiperSlide>
                     );
                   })}
@@ -90,12 +107,14 @@ export default function Detail(props) {
               </div>
             </div>
           </div>
-          <div className="border-b pb-4 mb-4 dark:border-neutral-500">
-            <h3 className="text-xl font-bold mb-2">Synopsis</h3>
+          {/* Synopsis */}
+          <div className={boxStyle}>
+            <h3 className={`${titleStyle} mb-2`}>Synopsis</h3>
             <p className={textStyle}>{dataCheck(item.items[0].synopsis)}</p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold mb-2">News</h3>
+          {/* News */}
+          <div className={boxStyle}>
+            <h3 className={`${titleStyle} mb-2`}>News</h3>
             {item.items[2].length != 0 ? (
               item.items[2].map((news, index) => {
                 return (
