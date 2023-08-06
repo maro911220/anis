@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 /* style */
-const textStyle = "text-sm lg:text-base text-neutral-600 dark:text-neutral-400";
+const textStyle = "text-sm lg:text-base text-neutral-600 dark:text-neutral-300";
 const boxStyle =
   "p-2 my-2 rounded bg-neutral-100 border border-neutral-200 md:p-4 md:my-4 dark:border-neutral-700 dark:bg-neutral-600";
 const titleBox =
@@ -133,7 +133,7 @@ export default function Detail(props) {
                 );
               })
             ) : (
-              <div> not be found.</div>
+              <div className={textStyle}> not be found.</div>
             )}
           </div>
         </motion.div>
