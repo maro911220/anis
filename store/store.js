@@ -20,7 +20,9 @@ const useStore = create((set) => ({
         set(() => ({ schedules: res.data.data }));
       })
       .catch((err) => {
-        location.href = "/error";
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       });
   },
   // list load
@@ -43,7 +45,9 @@ const useStore = create((set) => ({
         }));
       })
       .catch((err) => {
-        location.href = "/error";
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       });
   },
   // detail load
@@ -62,7 +66,9 @@ const useStore = create((set) => ({
         })
       )
       .catch((err) => {
-        location.href = "/error";
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       });
   },
   // reset
