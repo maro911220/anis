@@ -8,9 +8,7 @@ import Pagination from "@/app/list/pagination";
 export default function List(props) {
   const item = useStore((state) => state);
   useEffect(() => {
-    setTimeout(() => {
-      item.loadList(props.searchParams);
-    }, 1000);
+    item.loadList(props.searchParams);
     return () => {
       item.listReset();
     };

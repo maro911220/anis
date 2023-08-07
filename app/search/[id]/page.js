@@ -7,9 +7,7 @@ import ListComponent from "@/app/listComponent";
 export default function List(props) {
   const item = useStore((state) => state);
   useEffect(() => {
-    setTimeout(() => {
-      item.loadList(props.params);
-    }, 1000);
+    item.loadList(props.params);
     return () => {
       item.listReset();
     };

@@ -19,10 +19,10 @@ const contentListItem =
   "transition bg-neutral-100 flex-1 text-xs sm:text-sm md:text-lg md:rounded md:border dark:bg-neutral-600 dark:border-neutral-700 hover:bg-neutral-200 hover:dark:bg-neutral-700";
 const contentListItemActive = "bg-main text-white border-transparent";
 const conetntListBtn = "w-full h-8 uppercase md:h-10";
-const scheduleLayout = "w-full flex-one";
+const scheduleLayout = "w-full flex-1";
 
 /* Style Schedules */
-const scheduleList = "grid grid-cols-1 gap-2";
+const scheduleList = "grid grid-cols-1 gap-2 w-full";
 const scheduleLink = "w-full h-full flex gap-2";
 const scheduleListItem =
   "transition bg-neutral-100 p-2 border border-neutral-200 rounded dark:border-neutral-700 dark:bg-neutral-600 hover:bg-neutral-200 hover:dark:bg-neutral-700";
@@ -37,10 +37,8 @@ const scheduleListCategoryText = "text-xs";
 export default function Home() {
   const item = useStore((state) => state);
   useEffect(() => {
-    setTimeout(() => {
-      item.loadList("seasons/now");
-      item.loadSchedules("monday");
-    }, 1000);
+    item.loadList("seasons/now");
+    item.loadSchedules("monday");
 
     return () => {
       item.listReset();
@@ -145,44 +143,54 @@ function Schedules({ item }) {
         </ul>
         {/* schedule List */}
         <div className={scheduleLayout}>
-          <motion.ul
-            className={scheduleList}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {item.schedules.map((sch, index) => {
-              return (
-                <li className={scheduleListItem} key={index}>
-                  <Link href={`/detail/${sch.mal_id}`} className={scheduleLink}>
-                    <img
-                      className={scheduleLisImg}
-                      src={sch.images.jpg.image_url}
-                      alt={sch.title_japanese}
-                    />
-                    <div className={scheduleListBox}>
-                      <div>
-                        <p
-                          className={`${scheduleListTitleJp} ${scheduleListTitle}`}
-                        >
-                          {sch.title_japanese}
-                        </p>
-                        <p className={scheduleListTitle}>{sch.title}</p>
+          {!item.schedules[0] ? (
+            <Loadings />
+          ) : (
+            <motion.ul
+              className={scheduleList}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {item.schedules.map((sch, index) => {
+                return (
+                  <li className={scheduleListItem} key={index}>
+                    <Link
+                      href={`/detail/${sch.mal_id}`}
+                      className={scheduleLink}
+                    >
+                      <img
+                        className={scheduleLisImg}
+                        src={sch.images.jpg.image_url}
+                        alt={sch.title_japanese}
+                      />
+                      <div className={scheduleListBox}>
+                        <div>
+                          <p
+                            className={`${scheduleListTitleJp} ${scheduleListTitle}`}
+                          >
+                            {sch.title_japanese}
+                          </p>
+                          <p className={scheduleListTitle}>{sch.title}</p>
+                        </div>
+                        <div className={scheduleListCategory}>
+                          {sch.genres.map((genres, index) => {
+                            return (
+                              <p
+                                key={index}
+                                className={scheduleListCategoryText}
+                              >
+                                {genres.name}
+                              </p>
+                            );
+                          })}
+                        </div>
                       </div>
-                      <div className={scheduleListCategory}>
-                        {sch.genres.map((genres, index) => {
-                          return (
-                            <p key={index} className={scheduleListCategoryText}>
-                              {genres.name}
-                            </p>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </motion.ul>
+                    </Link>
+                  </li>
+                );
+              })}
+            </motion.ul>
+          )}
         </div>
       </div>
     </>

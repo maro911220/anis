@@ -21,14 +21,17 @@ const useStore = create((set) => ({
     });
   },
   loadSchedules: async (day) => {
-    await axios
-      .get(`${baseUrl}/schedules?filter=${day}`)
-      .then((res) => {
-        set(() => ({ schedules: res.data.data }));
-      })
-      .catch((err) => {
-        error();
-      });
+    set(() => ({ schedules: [] }));
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/schedules?filter=${day}`)
+        .then((res) => {
+          set(() => ({ schedules: res.data.data }));
+        })
+        .catch((err) => {
+          error();
+        });
+    }, 500);
   },
   // list load
   loadList: async (e) => {
@@ -41,40 +44,44 @@ const useStore = create((set) => ({
       }
     } else url = `${baseUrl}/${e}?limit=24`;
 
-    await axios
-      .get(url)
-      .then((res) => {
-        set(() => ({
-          list: [...res.data.data],
-          pagination: res.data.pagination,
-        }));
-      })
-      .catch((err) => {
-        error();
-      });
+    setTimeout(() => {
+      axios
+        .get(url)
+        .then((res) => {
+          set(() => ({
+            list: [...res.data.data],
+            pagination: res.data.pagination,
+          }));
+        })
+        .catch((err) => {
+          error();
+        });
+    }, 1000);
   },
   // detail load
   loadDetail: async (e) => {
-    await axios
-      .all([
-        axios.get(`${baseUrl}/anime/${e}/full`),
-        axios.get(`${baseUrl}/anime/${e}/characters`),
-        axios.get(`${baseUrl}/anime/${e}/news`),
-      ])
-      .then(
-        axios.spread((res1, res2, res3) => {
-          set(() => ({
-            items: [
-              res1.data.data,
-              res2.data.data.slice(0, 16),
-              res3.data.data.slice(0, 5),
-            ],
-          }));
-        })
-      )
-      .catch((err) => {
-        error();
-      });
+    setTimeout(() => {
+      axios
+        .all([
+          axios.get(`${baseUrl}/anime/${e}/full`),
+          axios.get(`${baseUrl}/anime/${e}/characters`),
+          axios.get(`${baseUrl}/anime/${e}/news`),
+        ])
+        .then(
+          axios.spread((res1, res2, res3) => {
+            set(() => ({
+              items: [
+                res1.data.data,
+                res2.data.data.slice(0, 16),
+                res3.data.data.slice(0, 5),
+              ],
+            }));
+          })
+        )
+        .catch((err) => {
+          error();
+        });
+    }, 1000);
   },
   // reset
   listReset: () => {
