@@ -64,7 +64,11 @@ const useStore = create((set) => ({
       .then(
         axios.spread((res1, res2, res3) => {
           set(() => ({
-            items: [res1.data.data, res2.data.data, res3.data.data],
+            items: [
+              res1.data.data,
+              res2.data.data.slice(0, 16),
+              res3.data.data.slice(0, 5),
+            ],
           }));
         })
       )

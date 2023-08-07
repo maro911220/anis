@@ -31,7 +31,9 @@ export default function Detail(props) {
     return e !== "" ? e : "not data";
   };
   useEffect(() => {
-    item.loadDetail(props.params.id);
+    setTimeout(() => {
+      item.loadDetail(props.params.id);
+    }, 1000);
     return () => {
       item.listReset();
     };
