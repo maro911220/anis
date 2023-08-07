@@ -7,7 +7,7 @@ export default function Loadings() {
   useEffect(() => {
     setTimeout(() => {
       setFound(true);
-    }, 3000);
+    }, 5000);
     return () => {
       setFound(false);
     };
