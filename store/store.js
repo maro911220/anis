@@ -26,14 +26,9 @@ const useStore = create((set) => ({
   loadSchedules: async (day) => {
     set(() => ({ schedules: [] }));
     setTimeout(() => {
-      axios
-        .get(`${baseUrl}/schedules?filter=${day}`)
-        .then((res) => {
-          set(() => ({ schedules: res.data.data }));
-        })
-        .catch((err) => {
-          error();
-        });
+      axios.get(`${baseUrl}/schedules?filter=${day}`).then((res) => {
+        set(() => ({ schedules: res.data.data }));
+      });
     }, loadDelay);
   },
   // list load
