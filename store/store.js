@@ -24,14 +24,16 @@ const useStore = create((set) => ({
   // schedules load
   loadSchedules: async (day) => {
     set(() => ({ schedules: [] }));
-    await axios
-      .get(`${baseUrl}/schedules?filter=${day}`)
-      .then((res) => {
-        set(() => ({ schedules: res.data.data }));
-      })
-      .catch((err) => {
-        error();
-      });
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/schedules?filter=${day}`)
+        .then((res) => {
+          set(() => ({ schedules: res.data.data }));
+        })
+        .catch((err) => {
+          error();
+        });
+    }, 300);
   },
   // list load
   loadList: async (e) => {
@@ -39,18 +41,19 @@ const useStore = create((set) => ({
     set(() => ({ list: [] }));
     if (isNaN(e.id)) url = `anime?q=${e.id}`;
     else url = `anime?genres=${e.id}&order_by=popularity&page=${e.page}`;
-
-    await axios
-      .get(`${baseUrl}/${url}&limit=24`)
-      .then((res) => {
-        set(() => ({
-          list: [...res.data.data],
-          pagination: res.data.pagination,
-        }));
-      })
-      .catch((err) => {
-        error();
-      });
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/${url}&limit=24`)
+        .then((res) => {
+          set(() => ({
+            list: [...res.data.data],
+            pagination: res.data.pagination,
+          }));
+        })
+        .catch((err) => {
+          error();
+        });
+    }, 300);
   },
   // seasons load
   loadSeasons: async () => {
@@ -65,26 +68,29 @@ const useStore = create((set) => ({
     set(() => ({
       items: [],
     }));
-    await axios
-      .all([
-        axios.get(`${baseUrl}/anime/${e}/full`),
-        axios.get(`${baseUrl}/anime/${e}/characters`),
-        axios.get(`${baseUrl}/anime/${e}/news`),
-      ])
-      .then(
-        axios.spread((res1, res2, res3) => {
-          set(() => ({
-            items: [
-              res1.data.data,
-              res2.data.data.slice(0, 16),
-              res3.data.data.slice(0, 5),
-            ],
-          }));
-        })
-      )
-      .catch((err) => {
-        error();
-      });
+
+    setTimeout(() => {
+      axios
+        .all([
+          axios.get(`${baseUrl}/anime/${e}/full`),
+          axios.get(`${baseUrl}/anime/${e}/characters`),
+          axios.get(`${baseUrl}/anime/${e}/news`),
+        ])
+        .then(
+          axios.spread((res1, res2, res3) => {
+            set(() => ({
+              items: [
+                res1.data.data,
+                res2.data.data.slice(0, 16),
+                res3.data.data.slice(0, 5),
+              ],
+            }));
+          })
+        )
+        .catch((err) => {
+          error();
+        });
+    }, 300);
   },
 }));
 
