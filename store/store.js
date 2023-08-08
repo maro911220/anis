@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 const baseUrl = "https://api.jikan.moe/v4";
+const loadDelay = 600;
 const error = () => {
   setTimeout(() => {
     location.reload();
@@ -33,7 +34,7 @@ const useStore = create((set) => ({
         .catch((err) => {
           error();
         });
-    }, 300);
+    }, loadDelay);
   },
   // list load
   loadList: async (e) => {
@@ -53,7 +54,7 @@ const useStore = create((set) => ({
         .catch((err) => {
           error();
         });
-    }, 300);
+    }, loadDelay);
   },
   // seasons load
   loadSeasons: async () => {
@@ -90,7 +91,7 @@ const useStore = create((set) => ({
         .catch((err) => {
           error();
         });
-    }, 300);
+    }, loadDelay);
   },
 }));
 
