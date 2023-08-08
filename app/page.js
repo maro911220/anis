@@ -37,21 +37,20 @@ const scheduleListCategoryText = "text-xs";
 export default function Home() {
   const item = useStore((state) => state);
   useEffect(() => {
-    item.loadList("seasons/now");
-    item.loadSchedules("monday");
-
-    return () => {
-      item.listReset();
-    };
+    if (!item.firstLoad) {
+      item.loadSeasons();
+      item.loadSchedules("monday");
+      item.loadFirst();
+    }
   }, []);
 
   return (
     <>
-      {!item.list[0] ? (
+      {!item.seasons[0] ? (
         <Loadings />
       ) : (
         <>
-          <Top items={item.list} />
+          <Top items={item.seasons} />
           <Schedules item={item} />
         </>
       )}

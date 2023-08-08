@@ -9,7 +9,7 @@ export default function List(props) {
   useEffect(() => {
     item.loadList(props.params);
     return () => {
-      item.listReset();
+      // item.listReset();
     };
   }, [props]);
   return (

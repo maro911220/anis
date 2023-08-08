@@ -10,7 +10,7 @@ export default function List(props) {
   useEffect(() => {
     item.loadList(props.searchParams);
     return () => {
-      item.listReset();
+      // item.listReset();
     };
   }, [props]);
   return (
