@@ -40,7 +40,6 @@ export default function Home() {
     if (!item.firstLoad) {
       item.loadSeasons();
       item.loadSchedules("monday");
-      item.loadFirst();
     }
   }, []);
 

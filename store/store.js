@@ -15,11 +15,6 @@ const useStore = create((set) => ({
   navList: [],
   schedules: [],
   pagination: [],
-  firstLoad: false,
-  // firstLoad
-  loadFirst: () => {
-    set(() => ({ firstLoad: true }));
-  },
   // genres load
   loadGenres: async () => {
     await axios.get(`${baseUrl}/genres/anime`).then((res) => {
