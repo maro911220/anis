@@ -32,9 +32,6 @@ export default function Detail(props) {
   };
   useEffect(() => {
     item.loadDetail(props.params.id);
-    return () => {
-      // item.listReset();
-    };
   }, []);
 
   return (
