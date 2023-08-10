@@ -24,7 +24,9 @@ const useStore = create((set) => ({
   // seasons load
   loadSeasons: async () => {
     await axios.get(`${baseUrl}/seasons/now?limit=24`).then((res) => {
-      set(() => ({ seasons: [...res.data.data] }));
+      setTimeout(() => {
+        set(() => ({ seasons: [...res.data.data] }));
+      }, delay);
     });
   },
   // schedules load
@@ -34,7 +36,7 @@ const useStore = create((set) => ({
       axios.get(`${baseUrl}/schedules?filter=${day}`).then((res) => {
         set(() => ({ schedules: res.data.data }));
       });
-    }, delay / 2);
+    }, delay);
   },
   // list load
   loadList: async (e) => {

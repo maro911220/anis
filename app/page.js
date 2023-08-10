@@ -37,10 +37,8 @@ const scheduleListCategoryText = "text-xs";
 export default function Home() {
   const item = useStore((state) => state);
   useEffect(() => {
-    if (!item.firstLoad) {
-      item.loadSeasons();
-      item.loadSchedules("monday");
-    }
+    if (item.seasons.length == 0) item.loadSeasons();
+    item.loadSchedules("monday");
   }, []);
 
   return (
