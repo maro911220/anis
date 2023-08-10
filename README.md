@@ -1,4 +1,4 @@
-# MOVIES
+# anis
 
 #### [Jikan API](https://jikan.moe/)를 사용하여 다음과 같은 기능을 구현한 애니메이션 정보 웹 페이지를 개발하였습니다.
 

@@ -109,30 +109,6 @@ export default function Detail(props) {
             <h3 className={`${titleStyle} mb-2`}>Synopsis</h3>
             <p className={textStyle}>{dataCheck(item.items[0].synopsis)}</p>
           </div>
-          {/* News */}
-          <div className={boxStyle}>
-            <h3 className={`${titleStyle} mb-2`}>News</h3>
-            {item.items[2].length != 0 ? (
-              item.items[2].map((news, index) => {
-                return (
-                  <div key={index}>
-                    <a
-                      className={
-                        textStyle + ` inline-flex leading-5 hover:underline`
-                      }
-                      href={news.url}
-                      target="_blank"
-                    >
-                      <AiOutlineLink className="flex-none text-md" />
-                      {news.title}
-                    </a>
-                  </div>
-                );
-              })
-            ) : (
-              <div className={textStyle}> not be found.</div>
-            )}
-          </div>
         </motion.div>
       ) : (
         <Loadings />
