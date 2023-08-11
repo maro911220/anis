@@ -120,7 +120,7 @@ export default function Detail(props) {
             {item.items[0].trailer.youtube_id ? (
               <iframe
                 className="w-full rounded h-[45vw] max-h-[800px]"
-                src={`https://www.youtube.com/embed/${item.items[0].trailer.youtube_id}`}
+                src={`https://www.youtube-nocookie.com/embed/${item.items[0].trailer.youtube_id}`}
                 title={item.items[0].title}
               ></iframe>
             ) : (
