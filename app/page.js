@@ -18,6 +18,7 @@ const conetntList =
 const contentListItem =
   "transition bg-neutral-100 flex-1 text-xs sm:text-sm md:text-lg md:rounded md:border dark:bg-neutral-600 dark:border-neutral-700 hover:bg-neutral-200 hover:dark:bg-neutral-700";
 const contentListItemActive = "bg-main text-white border-transparent";
+const btnDisable = "pointer-events-none	opacity-50";
 const conetntListBtn = "w-full h-8 uppercase md:h-10";
 const scheduleLayout = "w-full flex-1";
 
@@ -122,7 +123,7 @@ function Schedules({ item }) {
                 key={index}
                 className={`${contentListItem} ${
                   index === btnActive && contentListItemActive
-                }`}
+                } ${!item.schedules[0] && btnDisable}`}
               >
                 <button
                   className={conetntListBtn}
