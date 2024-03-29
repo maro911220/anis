@@ -12,14 +12,12 @@
 
 ## 시작 가이드
 
-```
-git clone https://github.com/maro911220/anis.git
-```
-
-```
-npm install
-```
-
-```
+```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
